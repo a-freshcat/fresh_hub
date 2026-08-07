@@ -209,15 +209,16 @@
         .submit-row button {
             background: #ff5e3a;
             border: none;
-            padding: 0.7rem 2.5rem;
             border-radius: 0 30px 0 30px;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: 0.8rem;
             color: #0a0c10;
             cursor: pointer;
             transition: 0.15s;
             letter-spacing: 0.1em;
+            padding: 0.9rem 3rem;      /* 加大内边距 */
+            font-size: 1rem;           /* 加大字号 */
+            min-width: 120px;          /* 增加最小宽度 */
         }
         .submit-row button:hover { transform: scale(1.05); background: #ff7a5a; }
         .submit-row button:disabled { opacity: 0.3; pointer-events: none; }
@@ -769,7 +770,11 @@
                 if (e.key === 'Enter') { e.preventDefault(); handleSubmit(); }
             });
         });
-        restartBtn.addEventListener('click', restartGame);
+        restartBtn.addEventListener('click', function() {
+    if (confirm('确定要重新挑战吗？当前积分将归零喵～')) {
+        restartGame();
+    }
+});
 
         clearRankBtn.addEventListener('click', function() {
             if (confirm('确定要清空所有排行榜记录吗喵？')) {
